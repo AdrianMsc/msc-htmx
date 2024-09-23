@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTMX Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 p-5">
+    <h1 class="text-2xl font-bold mb-4">HTMX Demo with Test API</h1>
+
+    <div class="mb-6">
+      <h2 class="text-xl mb-2">Load users from the API</h2>
+      <button
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        hx-get="https://jsonplaceholder.typicode.com/users"
+        hx-trigger="click"
+        hx-target="#user-list"
+        hx-swap="outerHTML"
+      >
+        Load Users
+      </button>
+    </div>
+
+    <div id="user-list" class="bg-white p-4 rounded shadow">
+      <p>Click "Load Users" to see the user list.</p>
+    </div>
+
+    <hr class="my-6" />
+
+    <div class="mb-6">
+      <h2 class="text-xl mb-2">Create a new Post</h2>
+      <form
+        hx-post="https://jsonplaceholder.typicode.com/posts"
+        hx-trigger="submit"
+        hx-target="#post-result"
+        hx-swap="outerHTML"
+        class="bg-white p-4 rounded shadow"
+      >
+        <div class="mb-4">
+          <label for="title" class="block text-gray-700">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="border border-gray-300 p-2 w-full rounded"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="body" class="block text-gray-700">Content</label>
+          <textarea
+            id="body"
+            name="body"
+            class="border border-gray-300 p-2 w-full rounded"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <div id="post-result" class="bg-white p-4 rounded shadow">
+      <p>Your post result will appear here after submission.</p>
+    </div>
+
+    <hr class="my-6" />
+
+    <div class="mb-6">
+      <h2 class="text-xl mb-2">Delete a Post (ID 1)</h2>
+      <button
+        class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        hx-delete="https://jsonplaceholder.typicode.com/posts/1"
+        hx-trigger="click"
+        hx-target="#delete-result"
+        hx-swap="outerHTML"
+      >
+        Delete Post
+      </button>
+    </div>
+
+    <div id="delete-result" class="bg-white p-4 rounded shadow">
+      <p>Click "Delete Post" to remove a sample post.</p>
+    </div>
+  </body>
+</html>
